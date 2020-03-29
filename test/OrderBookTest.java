@@ -7,17 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class OrderBookTest {
 
     @Test
-    public void testLevelsCreation() {
-        Order order1 = new DefaultOrder(12.2, 100, Side.BUY);
-        Order order2 = new DefaultOrder(16.2, 108, Side.BUY);
-        Order order3 = new DefaultOrder(16.2, 118, Side.BUY);
-        Order order4 = new DefaultOrder(10.2, 109, Side.SELL);
-
+    public void testAddOrders() {
         OrderBook book = new DefaultOrderBook();
-        book.addOrder(order1);
-        book.addOrder(order2);
-        book.addOrder(order3);
-        book.addOrder(order4);
+        book.addOrder(new DefaultOrder(12.2, 100, Side.BUY));
+        book.addOrder(new DefaultOrder(16.2, 108, Side.BUY));
+        book.addOrder(new DefaultOrder(16.2, 118, Side.BUY));
+        book.addOrder(new DefaultOrder(10.2, 109, Side.SELL));
 
         System.out.println(book.toString());
 
@@ -41,8 +36,25 @@ class OrderBookTest {
     }
 
 
+    //TODO: Implement below
+
     @Test
-    public void testUnknownOrder() {
+    public void testRemoveOrders() {
+
+    }
+
+    @Test
+    public void testUpdateOrders() {
+
+    }
+
+    @Test
+    public void testRemoveUnknownOrder() {
+
+    }
+
+    @Test
+    public void testUpdateUnknownOrder() {
 
     }
 }
