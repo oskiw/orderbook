@@ -1,0 +1,3 @@
+enum Side {
+    BUY, SELL
+}
