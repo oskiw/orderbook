@@ -12,19 +12,28 @@ final class PriceLevelWithOrders implements Iterable<Map.Entry<Long, Long>>, Lev
         this.price = price;
     }
 
-    void addOrder(Order order) {
-        volume += order.getQuantity();
-        ordersQuantities.put(order.getId(), order.getQuantity());
+    void addOrder(long orderId, long quantity) {
+        volume += quantity;
+        ordersQuantities.put(orderId, quantity);
     }
 
-    boolean removeOrder(Order order) {
-        if (!ordersQuantities.containsKey(order.getId())) {
+    boolean removeOrder(long orderId) {
+        if (!ordersQuantities.containsKey(orderId)) {
             return false;
         }
 
-        Long quantity = ordersQuantities.remove(order.getId());
+        Long quantity = ordersQuantities.remove(orderId);
         volume -= quantity;
         return true;
+    }
+
+    void decreaseVolume(long quantity) {
+        volume -= quantity;
+    }
+
+    void decreaseOrderQuantity(long levelOrderId, long quantity) {
+        ordersQuantities.put(levelOrderId, ordersQuantities.get(levelOrderId) - quantity);
+        volume -= quantity;
     }
 
     @Override
@@ -40,5 +49,9 @@ final class PriceLevelWithOrders implements Iterable<Map.Entry<Long, Long>>, Lev
     @Override
     public Iterator<Map.Entry<Long, Long>> iterator() {
         return ordersQuantities.entrySet().iterator();
+    }
+
+    public int size() {
+        return ordersQuantities.size();
     }
 }

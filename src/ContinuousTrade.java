@@ -1,11 +1,11 @@
-public final class DefaultTrade implements Trade {
+public final class ContinuousTrade implements Trade {
 
     private final long firstOrderId;
     private final long secondOrderId;
     private final long volume;
     private final double price;
 
-    public DefaultTrade(long firstOrderId, long secondOrderId, long volume, double price) {
+    public ContinuousTrade(long firstOrderId, long secondOrderId, long volume, double price) {
         this.firstOrderId = firstOrderId;
         this.secondOrderId = secondOrderId;
         this.volume = volume;
