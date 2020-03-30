@@ -1,9 +1,30 @@
-public interface Trade {
-    long getVolume();
+public final class Trade {
 
-    double getPrice();
+    private final long firstOrderId;
+    private final long secondOrderId;
+    private final long volume;
+    private final double price;
 
-    long getFirstOrderId();
+    public Trade(long firstOrderId, long secondOrderId, long volume, double price) {
+        this.firstOrderId = firstOrderId;
+        this.secondOrderId = secondOrderId;
+        this.volume = volume;
+        this.price = price;
+    }
 
-    long getSecondOrderId();
+    public long getVolume() {
+        return volume;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public long getFirstOrderId() {
+        return firstOrderId;
+    }
+
+    public long getSecondOrderId() {
+        return secondOrderId;
+    }
 }

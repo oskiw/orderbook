@@ -39,7 +39,7 @@ public final class SimpleOrderBook implements OrderBook {
                     matchLastEntry = true;
                     break;
                 }
-                trades.add(new ContinuousTrade(levelOrderId, order.getId(), levelOrderQuantity, level.getPrice()));
+                trades.add(new Trade(levelOrderId, order.getId(), levelOrderQuantity, level.getPrice()));
                 level.decreaseVolume(levelOrderQuantity);
                 it.remove();
                 leftoverQuantity -= levelOrderQuantity;
@@ -47,8 +47,7 @@ public final class SimpleOrderBook implements OrderBook {
 
             if (matchLastEntry) {
                 long levelOrderId = entry.getKey();
-                long levelOrderQuantity = entry.getValue();
-                trades.add(new ContinuousTrade(levelOrderId, order.getId(), leftoverQuantity, level.getPrice()));
+                trades.add(new Trade(levelOrderId, order.getId(), leftoverQuantity, level.getPrice()));
                 level.decreaseOrderQuantity(levelOrderId, leftoverQuantity);
                 leftoverQuantity = 0;
             }
